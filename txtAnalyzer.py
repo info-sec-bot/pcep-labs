@@ -24,12 +24,13 @@ def word_frequencies(text:str)->dict:
     for raw in text.split():
         w = raw.strip(".,;:!?\"()[]{}")
         #print(w)
+        # Remove common pronouns and prepositions from word frequency count
         if not w or w == "the" or w == "to" or w == "this" or w == "a" or w == "that" or w == "is" or w == "be" or w == "and" or w == "of" or w == "on" or \
                 w == "at" or w == "his" or w == "had" or w == "him" or w == "in" or w == "with" or w == "as" or w == "it" or w == "he":
             continue
         freqs[w] = freqs.get(w, 0) + 1
     return freqs
-
+# Return top frequency count
 def top_n(freqs:dict, n:int = 5):
     return sorted(freqs.items(), key=lambda kv: (-kv[1], kv[0]))[:n]
 
@@ -77,49 +78,6 @@ def format_report(text:str)->str:
                 print(sorted(res, key=lambda word: word[0]))
             b+=1
 
-        j = 0
-        k = 1
-        h = 0
-        g = 1
-        # for i,item in enumerate(sorted_list):
-        #     print(f"{sorted_list[i][1]} == {sorted_list[k][1]}")
-        #     if sorted_list[i][1] == sorted_list[k][1]:
-        #         sorted_word.append([sorted_list[i][0],sorted_list[k][1]])
-        #         #sorted_pair.append([sorted_list[j][0],sorted_list[k][1]])
-        #         #print(sorted_word)
-        #         print(i)
-        #         print(k)
-        #         k+=1
-        #         if len(sorted_word) == 2:
-        #             print(sorted_word)
-        #             sorted_word = sorted(sorted_word)
-        #             #print(sorted_word[-1][0])
-        #             sorted_pair.append([sorted_word])
-        #             sorted_word = []
-        # print(sorted_pair)
-
-        #print(sorted(sorted_list, key=lambda item: item[0]))
-        #print([i for _, i in sorted_list])
-        # i = 0
-        # j = i + 1
-        # For loop to sort top word answers with ties ->
-        #for i in range(len(sorted_word)):
-            #print(sorted_number[i])
-            #print(sorted_word[i])
-            #if sorted_number[i] == sorted_number[j]:
-            #     num=[(sorted_word[i], sorted_number[i])]
-            #     nmholder.append(num)
-            #     num = [(sorted_word[i+1], sorted_number[i+1])]
-            #     nmholder.append(num)
-            #     print(f"sorted word: {sorted_word[i]:<12} {sorted_number[i]:> 3} ")
-            #     print(f"sorted word: {sorted_word[i+1]:<12} {sorted_number[i+1]:> 3}")
-            #     snholder.append(sorted_word[i])
-            #     snholder.append(sorted_word[i+1])
-            #     #nmholder.append(sorted_number[i])
-            #     #nmholder.append(sorted_number[i+1])
-            #     sorted_word.pop(i+1)
-            # else:
-            #     i = i + 1
     else:
         lines.append(" No words found")
     # print(type(snholder))
