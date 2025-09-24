@@ -51,52 +51,45 @@ def format_report(text:str)->str:
     lines.append("")
     lines.append("Top Words:")
     pair = []
-    sorted_pair = []
     sorted_word = []
     sorted_list = []
-    sorted_number = []
-    snholder = []
-    num = []
-    nmholder = []
     if top:
         i = 0
         b = i - 1
+        res = []
         # j = 1
+        # Create sorted_list with word,cnt - this is also where words and count are appended to lines (printed output)
         for word,cnt in top:
             pair=[(word,cnt)]
             sorted_list.append([word,cnt])
             lines.append(f"{word:<12} {cnt:> 3}")
         for i,item in enumerate(sorted_list):
-            print(f"count {i} = {sorted_list[i][1]} b {b} = {sorted_list[b][1]}")
+            #print(f"count {i} = {sorted_list[i][1]} b {b} = {sorted_list[b][1]}")
             if sorted_list[i][1] == sorted_list[b][1]:
-                print(sorted_list[b][0])
                 sorted_word.append([sorted_list[i][0],sorted_list[i][1]])
                 sorted_word.append([sorted_list[b][0],sorted_list[b][1]])
                 # Using List Comprehension to remove duplicates when adding sets to compare to the list
-                res = []
                 [res.append(word) for word in sorted_word if word not in res]
-                print(sorted(res, key=lambda word: word[0]))
             b+=1
+        print(f"This is sorted ties 😎{sorted(res, key=lambda word: word[0])}")
 
     else:
         lines.append(" No words found")
-    # print(type(snholder))
-    # print(nmholder)
     return "\n".join(lines)
 
 if __name__ == "__main__":
 
     sample = input("Enter a sentence: ")
-    print("Your sentence as typed: ", sample)
+    #print("Your sentence as typed: ", sample)
 
     # Example strip function
-    print("Your sentence as striped and split: ", normalize(sample))
+    #print("Your sentence as striped and split: ", normalize(sample))
 
     # Example count function
-    print(basic_count(sample))
+    #print(basic_count(sample))
 
     # Example word frequencies
-    print(word_frequencies(sample))
+    #print(word_frequencies(sample))
     freqs = word_frequencies(sample)
 
     # Example top frequencies
