@@ -69,9 +69,11 @@ def format_report(text:str)->str:
                 sorted_word.append([sorted_list[i][0],sorted_list[i][1]])
                 sorted_word.append([sorted_list[b][0],sorted_list[b][1]])
                 # Using List Comprehension to remove duplicates when adding sets to compare to the list
+                sorted_word.sort()
                 [res.append(word) for word in sorted_word if word not in res]
+
             b+=1
-        print(f"This is sorted ties 😎{sorted(res, key=lambda word: word[0])}")
+        print(f"This is sorted ties 😎{sorted(res, key=lambda word: word[1], reverse=True)}")
 
     else:
         lines.append(" No words found")
